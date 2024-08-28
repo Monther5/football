@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.my_stadium.ui.theme.CustomColor
 
 @Composable
 fun TextButton(
@@ -15,7 +16,7 @@ fun TextButton(
 ) {
     Text(
         text = text,
-        color = Color.Green,
+        color = CustomColor,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         modifier = Modifier.clickable { onClick }

@@ -1,111 +1,134 @@
-package com.example.my_stadium
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.graphics.Color.Companion
+import androidx.navigation.NavController
+import com.example.my_stadium.R
 
 @Composable
-fun Button(onClick: () -> Unit, modifier: Modifier, colors: Any, content: @Composable () -> Unit) {
-
-}
-
-@Composable
-fun HugoChavezStadium() {
-
+fun StadiumBookingScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(6.dp)
+    ) {
         Image(
-            painter = painterResource(id = R.drawable.stadium),
+            painter = painterResource(id = R.drawable.stadium), // Replace with your image resource
             contentDescription = "Stadium Image",
-            modifier = Modifier.size(2000.dp) )
-
-
-
-
-
-        Column(
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .height(350.dp)
+                .background(Color.Gray)
+        )
+
+        Spacer(modifier = Modifier.height(56.dp))
+
+        Text(
+            text = "Hugo Chávez Football Stadium",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(28.dp))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = "Hugo Chávez Football Stadium",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 24.sp,
+            Column {
+                Text(
+                    text = "Banina, Benghazi",
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
 
-                )
-            )
 
-            Spacer(modifier = Modifier.height(8.dp))
+                    )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Default.Star,
+                        contentDescription = "Rating Star",
+                        tint = Color.Yellow,
+                        modifier = Modifier.size(16.dp)
+                    )
+                    Text(
+                        text = "4.1",
+                        fontSize = 16.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
 
-            Text(
-                text = "Banina,Benghazi",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 18.sp
-                )
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = "Capacity: 10,550 people",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 16.sp
-                )
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = "Pitch dimensions: 105m x 68m",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 16.sp
-                )
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
+                }
+            }
             Text(
                 text = "50 LYD/Hour",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 18.sp
-                )
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
             )
+        }
 
-            Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(18.dp))
+Text(text = "Description",
+    fontSize = 18.sp,
+    fontWeight = FontWeight.Bold,
+    color = Color.Black)
+        Spacer(modifier = Modifier.height(10.dp))
 
-            Button(
-                onClick = { /* Handle book now click */ },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                colors = ButtonDefaults.buttonColors()
-            ) {
-                Text(
-                    text = "Book Now",
-                    style = TextStyle(
-                        color = Color.White,
-                        fontSize = 16.sp
-                    )
-                )
-            }
+        Text(
+            text = "This is a Libyan football stadium located in Benina, a town 19 km east of Benghazi. The stadium holds 10,550 people. The pitch's dimensions are 105m x 68m.",
+            fontSize = 16.sp,
+            color = Color.Black,
+        )
+
+        Spacer(modifier = Modifier.height(85.dp))
+
+        Button(
+            onClick = { /* */ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Blue,
+                contentColor = Color.White
+            )
+        ) {
+            Text(
+                text = "Book Now",
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
+}
+
+

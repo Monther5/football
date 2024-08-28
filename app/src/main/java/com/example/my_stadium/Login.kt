@@ -1,6 +1,5 @@
 package com.example.my_stadium
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,9 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -24,31 +23,30 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.my_stadium.R
+import androidx.navigation.NavController
+import com.example.my_stadium.constant.Route
+import com.example.my_stadium.ui.theme.CustomColor
 import com.example.todoapp.componets.DefaultButton
-import componets.TextButton
 
-import java.lang.Exception
+import componets.TextButton
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navController: NavController
+) {
     var email by remember {
         mutableStateOf("")
     }
     var password by remember {
         mutableStateOf("")
     }
-
-
-
     Column (
        modifier = Modifier
            .fillMaxSize()
@@ -79,24 +77,38 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
 
-        DefaultButton(buttonText = "Login", onClick = {})
+        Button(
+            onClick = {
+                navController.navigate(Route.HomeScreen)
+            },
+            modifier = Modifier
+                .width(280.dp)
+                .height(50.dp),
+            shape = RoundedCornerShape(16.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = CustomColor),
+            elevation = ButtonDefaults.buttonElevation(0.dp),
+
+            ){
+            Text(
+                text = "Login",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
 
 
         Spacer(modifier = Modifier.height(38.dp))
         Row {
-            Text(text = " have not an account", Modifier.clickable {  })
-            TextButton(text = "  Sign Up") {}
+            Text(text = "Have not an account?", Modifier.clickable { navController.navigate(Route.SignUp) })
+            TextButton(text = " Sign Up",
 
+
+                ) {
+                navController.navigate(Route.Login)
+            }
         }
-
-
-
-
-
-
     }
-
-
 }
 
 

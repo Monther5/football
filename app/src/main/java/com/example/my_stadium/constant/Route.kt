@@ -7,4 +7,7 @@ object Route {
     val SignUp = "SingUp"
     val Settings = "settings"
     val  StadiumBookingScreen="StadiumBookingScreen"
+    val  profile="SoccerfyApp"
+    val  book_time="FieldBookingScreen"
+    val save="save"
 }

@@ -19,13 +19,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.my_stadium.ui.theme.CustomColor
 import java.time.LocalDate
 
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun FieldBookingScreen() {
+fun FieldBookingScreen(navController: NavController) {
     var selectedDate by remember { mutableStateOf(LocalDate.now()) }
     var checkInTime by remember { mutableStateOf("") }
     var checkOutTime by remember { mutableStateOf("") }
@@ -63,8 +65,8 @@ fun FieldBookingScreen() {
                 .fillMaxWidth()
                 .height(50.dp),
             shape = RoundedCornerShape(13.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = CustomColor),
 
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00AA00))
         ) {
             Text("Book Now", color = Color.White, fontSize = 18.sp)
         }

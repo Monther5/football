@@ -25,6 +25,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.graphics.Color.Companion
 import androidx.navigation.NavController
 import com.example.my_stadium.R
+import com.example.my_stadium.constant.Route
+import com.example.my_stadium.ui.theme.CustomColor
 
 @Composable
 fun StadiumBookingScreen(navController: NavController) {
@@ -35,7 +37,7 @@ fun StadiumBookingScreen(navController: NavController) {
             .padding(6.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.stadium), // Replace with your image resource
+            painter = painterResource(id = R.drawable.stadium),
             contentDescription = "Stadium Image",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -111,19 +113,20 @@ Text(text = "Description",
         Spacer(modifier = Modifier.height(85.dp))
 
         Button(
-            onClick = { /* */ },
+            onClick = {
+                navController.navigate(Route.book_time)
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .height(50.dp)
+                .padding(vertical = 1.dp),
             shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Blue,
-                contentColor = Color.White
-            )
+            colors = ButtonDefaults.buttonColors(containerColor = CustomColor),
+
         ) {
             Text(
                 text = "Book Now",
-                fontSize = 18.sp,
+                fontSize = 15.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

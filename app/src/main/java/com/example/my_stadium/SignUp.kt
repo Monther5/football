@@ -69,7 +69,7 @@ fun SignUpScreen(navController: NavController) {
             email = it
         }, label = { Text(" phone")})
 
-
+        Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(value = email,onValueChange ={
 
             email = it
@@ -101,7 +101,7 @@ fun SignUpScreen(navController: NavController) {
         ){
             Text(
                 text = "Sign up",
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )

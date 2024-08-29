@@ -1,5 +1,6 @@
 package com.example.my_stadium
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -41,6 +43,7 @@ import componets.TextButton
 fun LoginScreen(
     navController: NavController
 ) {
+    val context = LocalContext.current
     var email by remember {
         mutableStateOf("")
     }
@@ -79,8 +82,23 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                navController.navigate(Route.HomeScreen)
+//                navController.navigate(Route.HomeScreen)
+
+                when {
+                    email.isEmpty() -> {
+                        Toast.makeText(context, "Username cannot be empty", Toast.LENGTH_SHORT).show()
+                    }
+                    password.length < 8 -> {
+                        Toast.makeText(context, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                        navController.navigate(Route.HomeScreen )
+                        // Proceed with login logic
+                        }
+                        }
             },
+
             modifier = Modifier
                 .width(280.dp)
                 .height(50.dp),
@@ -91,7 +109,7 @@ fun LoginScreen(
             ){
             Text(
                 text = "Login",
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )

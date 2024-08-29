@@ -38,6 +38,15 @@ class MainActivity : ComponentActivity() {
                     composable(Route.StadiumBookingScreen) {
                         StadiumBookingScreen(navController)
                     }
+                    composable(Route.profile) {
+                        SoccerfyApp(navController)
+                    }
+                    composable(Route.book_time) {
+                        FieldBookingScreen(navController)
+                    }
+                    composable(Route.save) {
+                        save(navController)
+                    }
                 })
 
 

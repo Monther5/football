@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -21,6 +23,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.my_stadium.constant.Route
+import com.example.my_stadium.ui.theme.CustomColor
+import com.example.my_stadium.ui.theme.CustomColorg
 
 
 @Composable
@@ -39,7 +43,10 @@ fun TopAppBar() {
     TopAppBar(
 
         title = {
-            Text(text = "Soccerfy",  fontSize = 24.sp,
+            Text(text = "Soccerfy",
+                textAlign = TextAlign.Center,
+                fontSize = 24.sp,
+                color = CustomColor
 
         )
                 },
@@ -57,7 +64,7 @@ fun TopAppBar() {
 }
 
 @Composable
-fun BottomNavigationBar(navController: NavHostController) {
+fun BottomNavigationBarr(navController: NavHostController) {
     BottomNavigation(
         backgroundColor = Color.White,
         contentColor = Color.Black
@@ -65,7 +72,7 @@ fun BottomNavigationBar(navController: NavHostController) {
         val items = listOf(
             BottomNavItem(Route.HomeScreen, Icons.Default.Home),
             BottomNavItem("Favarite", Icons.Default.Favorite),
-            BottomNavItem("Profile", Icons.Default.Person),
+            BottomNavItem(Route.profile, Icons.Default.Person),
             BottomNavItem(Route.Settings, Icons.Default.Settings)
         )
 
@@ -97,7 +104,10 @@ fun Navigation(navController: NavHostController) {
 fun HomeScreen(nav: NavController) {
 
     Scaffold(
-        Modifier.fillMaxSize()
+        bottomBar = @androidx.compose.runtime.Composable { BottomNavigationBar(
+            navController = nav
+        ) },
+
     ){p  ->
 
         Column(modifier = Modifier
@@ -119,49 +129,56 @@ fun HomeScreen(nav: NavController) {
 
                     StadiumCard(
                         stadiumName = "The Goats Stadium",
-                        location = "Hadayak, Benghazi",
+                        location = "alhwary, Benghazi",
                         price = "50 LYD/Hour",
-                        rating = 4.1f,
+                        rating = 3.1f,
 
                         description = "This is a Libyan football stadium located in Alhadayak.",
-                        imageRes = R.drawable.st2
+                        imageRes = R.drawable.st2,
+                        nav
                     )
                 }
                 item {
                     StadiumCard(
-                        stadiumName = "The Goats Stadium",
+                        stadiumName = "Hugo Chávez Stadium",
                         location = "Hadayak, Benghazi",
-                        price = "50 LYD/Hour",
+                        price = "60 LYD/Hour",
                         rating = 4.1f,
 
                         description = "This is a Libyan football stadium located in Alhadayak.",
-                        imageRes = R.drawable.st2
+                        imageRes = R.drawable.stadium,
+                        nav
                     )
                 }
                 item {
                     StadiumCard(
-                        stadiumName = "The Goats Stadium",
+                        stadiumName = "St James' Park",
                         location = "Hadayak, Benghazi",
-                        price = "50 LYD/Hour",
-                        rating = 4.1f,
+                        price = "70 LYD/Hour",
+                        rating = 4.9f,
 
                         description = "This is a Libyan football stadium located in Alhadayak.",
-                        imageRes = R.drawable.st2
+                        imageRes = R.drawable.st3,
+                        nav
                     )
                 }
                 item {
                     StadiumCard(
-                        stadiumName = "The Goats Stadium",
+                        stadiumName = " Wembley Stadium",
                         location = "Hadayak, Benghazi",
-                        price = "50 LYD/Hour",
-                        rating = 4.1f,
+                        price = "80 LYD/Hour",
+                        rating = 4.7f,
 
                         description = "This is a Libyan football stadium located in Alhadayak.",
-                        imageRes = R.drawable.st2
+                        imageRes = R.drawable.st4,
+                        nav
                     )
                 }
+
             }
         }
+        Spacer(modifier = Modifier.height(446.dp))
+
     }
 
 }
@@ -199,20 +216,21 @@ fun CategoryBar() {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Button(onClick = { /*  */ },
-                colors = ButtonDefaults.buttonColors( Color(0xFFfffff0)),
+            colors = ButtonDefaults.buttonColors(  CustomColorg),
+
             shape = RoundedCornerShape(9.dp),
         ) {
             Text(text = "Nearby")
         }
         Button(onClick = { /*  */ },
-            colors = ButtonDefaults.buttonColors( Color(0xFFfffff0)),
+            colors = ButtonDefaults.buttonColors(  CustomColorg),
             shape = RoundedCornerShape(9.dp),
 
             ) {
             Text(text = "Most expensive")
         }
         Button(onClick = { /* */ },
-            colors = ButtonDefaults.buttonColors( Color(0xFFfffff0)),
+            colors = ButtonDefaults.buttonColors(  CustomColorg),
             shape = RoundedCornerShape(9.dp),
         ) {
             Text(text = "Cheapest")
@@ -228,14 +246,15 @@ fun StadiumCard(
     price: String,
     rating: Float,
     description: String,
-    imageRes: Int
+    imageRes: Int,
+    navController:NavController
 ) {
     Card(
         modifier = Modifier
             .padding(end = 28.dp, start = 10.dp)
             .height(400.dp)
-            .width(370.dp).clickable {
-           //     navController.navigate(Route.StadiumBookingScreen)
+            .width(310.dp).clickable {
+           navController.navigate(Route.StadiumBookingScreen)
                     },
         shape = RoundedCornerShape(16.dp),
         elevation = 8.dp
@@ -282,6 +301,8 @@ fun StadiumCard(
         }
     }
 }
+
+
 
 
 

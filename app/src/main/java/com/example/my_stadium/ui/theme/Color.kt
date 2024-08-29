@@ -10,4 +10,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val CustomColor = Color(19, 116, 58, 255) // Equivalent to 0xFF6200EE
+val CustomColor = Color(19, 116, 58, 255)
+val CustomColorg = Color(238, 238, 238, 255)
+val CustomColorgg = Color(220, 220, 220, 255) // Equivalent to 0xFF6200EE
+// Equivalent to 0xFF6200EE
+
